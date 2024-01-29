@@ -55,11 +55,11 @@ message {{ .Name }} {
 
 var primitiveMappings = map[avro.Type]string{
 	"string":  "string",
-	"bytes":   "[]byte",
-	"int":     "int",
+	"bytes":   "bytes",
+	"int":     "int32",
 	"long":    "int64",
-	"float":   "float32",
-	"double":  "float64",
+	"float":   "float",
+	"double":  "double",
 	"boolean": "bool",
 }
 
