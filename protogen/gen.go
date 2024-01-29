@@ -31,7 +31,6 @@ import "{{ . }}";
 {{- range .ThirdPartyImports }}
 import "{{ . }}";
 {{- end }}
-{{ end }}
 
 {{- range .Typedefs }}
 // {{ .Name }} is a generated struct.
