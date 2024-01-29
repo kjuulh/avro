@@ -32,7 +32,7 @@ import "{{ . }}";
 import "{{ . }}";
 {{- end }}
 
-{{- range .Typedefs }}
+{{ range .Typedefs }}
 // {{ .Name }} is a generated struct.
 message {{ .Name }} {
 	{{- range $index, $field := .Fields }}

@@ -4,6 +4,7 @@ syntax = "proto3"
 
 package testpkg
 
+
 // Test is a generated struct.
 message Test {
 		string SomeString = 1;
