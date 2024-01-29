@@ -34,11 +34,11 @@ func TestAvroProto_RequiredFlags(t *testing.T) {
 func TestAvroProto_GeneratesSchemaStdout(t *testing.T) {
 	var buf bytes.Buffer
 
-	args := []string{"avroproto", "testdata/schema.avsc"}
+	args := []string{"avroproto", "-p", "testpkg", "testdata/schema.avsc"}
 	gotCode := realMain(args, &buf, io.Discard)
 	require.Equal(t, 0, gotCode)
 
-	want, err := os.ReadFile("testdata/golden.go")
+	want, err := os.ReadFile("testdata/golden.proto")
 	require.NoError(t, err)
 	assert.Equal(t, want, buf.Bytes())
 }
@@ -49,7 +49,7 @@ func TestAvroProto_GeneratesSchema(t *testing.T) {
 	t.Cleanup(func() { _ = os.RemoveAll(path) })
 
 	file := filepath.Join(path, "test.go")
-	args := []string{"avroproto", "-o", file, "testdata/schema.avsc"}
+	args := []string{"avroproto", "-p", "testpkg", "-o", file, "testdata/schema.avsc"}
 	gotCode := realMain(args, io.Discard, io.Discard)
 	require.Equal(t, 0, gotCode)
 
@@ -57,11 +57,13 @@ func TestAvroProto_GeneratesSchema(t *testing.T) {
 	require.NoError(t, err)
 
 	if *update {
-		err = os.WriteFile("testdata/golden.go", got, 0600)
+		err = os.WriteFile("testdata/golden.proto", got, 0600)
 		require.NoError(t, err)
 	}
 
-	want, err := os.ReadFile("testdata/golden.go")
+	want, err := os.ReadFile("testdata/golden.proto")
 	require.NoError(t, err)
 	assert.Equal(t, want, got)
+
+	assert.Equal(t, string(want), string(got))
 }

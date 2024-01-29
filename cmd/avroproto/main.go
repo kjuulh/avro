@@ -4,17 +4,18 @@ import (
 	"bytes"
 	"flag"
 	"fmt"
-	"go/format"
 	"io"
+	"log"
 	"os"
 	"path/filepath"
 
 	"github.com/kjuulh/avro/v2"
-	"github.com/kjuulh/avro/v2/gen"
+	"github.com/kjuulh/avro/v2/protogen"
 )
 
 type config struct {
-	Out string
+	Out     string
+	PkgName string
 }
 
 func main() {
@@ -26,6 +27,7 @@ func realMain(args []string, stdout, stderr io.Writer) int {
 	flgs := flag.NewFlagSet("avroproto", flag.ExitOnError)
 	flgs.SetOutput(stderr)
 	flgs.StringVar(&cfg.Out, "o", "", "The output file path to write to instead of stdout.")
+	flgs.StringVar(&cfg.PkgName, "p", "", "The package name for which the protobuf file should include")
 	flgs.Usage = func() {
 		_, _ = fmt.Fprintln(stderr, "Usage: avroproto [options] schemas")
 		_, _ = fmt.Fprintln(stderr, "Options:")
@@ -40,8 +42,8 @@ func realMain(args []string, stdout, stderr io.Writer) int {
 		return 1
 	}
 
-	opts := []gen.OptsFunc{}
-	g := gen.NewGenerator("testpkg", map[string]gen.TagStyle{}, opts...)
+	opts := []protogen.OptsFunc{}
+	g := protogen.NewGenerator(cfg.PkgName, opts...)
 	for _, file := range flgs.Args() {
 		schema, err := avro.ParseFiles(filepath.Clean(file))
 		if err != nil {
@@ -54,11 +56,7 @@ func realMain(args []string, stdout, stderr io.Writer) int {
 	var buf bytes.Buffer
 	if err := g.Write(&buf); err != nil {
 		_, _ = fmt.Fprintf(stderr, "Error: could not generate code: %v\n", err)
-		return 3
-	}
-	formatted, err := format.Source(buf.Bytes())
-	if err != nil {
-		_, _ = fmt.Fprintf(stderr, "Error: could not format code: %v\n", err)
+		log.Printf("Error: could not generate code: %v\n", err)
 		return 3
 	}
 
@@ -74,7 +72,7 @@ func realMain(args []string, stdout, stderr io.Writer) int {
 		writer = file
 	}
 
-	if _, err := writer.Write(formatted); err != nil {
+	if _, err := writer.Write(buf.Bytes()); err != nil {
 		_, _ = fmt.Fprintf(stderr, "Error: could not write code: %v\n", err)
 		return 4
 	}
