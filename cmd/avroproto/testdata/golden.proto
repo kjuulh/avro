@@ -6,5 +6,5 @@ package testpkg
 
 // Test is a generated struct.
 message Test {
-		SomeString string = 1;
+		string SomeString = 1;
 }
