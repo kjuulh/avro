@@ -10,8 +10,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/hamba/avro/v2"
-	"github.com/hamba/avro/v2/gen"
+	"github.com/kjuulh/avro/v2"
+	"github.com/kjuulh/avro/v2/gen"
 )
 
 type config struct {

@@ -9,8 +9,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/hamba/avro/v2"
-	"github.com/hamba/avro/v2/ocf"
+	"github.com/kjuulh/avro/v2"
+	"github.com/kjuulh/avro/v2/ocf"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

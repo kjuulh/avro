@@ -4,11 +4,11 @@
   <img alt="Logo" src="http://svg.wiersma.co.za/hamba/project?title=avro&tag=A%20fast%20Go%20avro%20codec">
 </picture>
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/hamba/avro/v2)](https://goreportcard.com/report/github.com/hamba/avro/v2)
-[![Build Status](https://github.com/hamba/avro/actions/workflows/test.yml/badge.svg)](https://github.com/hamba/avro/actions)
+[![Go Report Card](https://goreportcard.com/badge/github.com/kjuulh/avro/v2)](https://goreportcard.com/report/github.com/kjuulh/avro/v2)
+[![Build Status](https://github.com/kjuulh/avro/actions/workflows/test.yml/badge.svg)](https://github.com/kjuulh/avro/actions)
 [![Coverage Status](https://coveralls.io/repos/github/hamba/avro/badge.svg?branch=main)](https://coveralls.io/github/hamba/avro?branch=main)
-[![Go Reference](https://pkg.go.dev/badge/github.com/hamba/avro/v2.svg)](https://pkg.go.dev/github.com/hamba/avro/v2)
-[![GitHub release](https://img.shields.io/github/release/hamba/avro.svg)](https://github.com/hamba/avro/releases)
+[![Go Reference](https://pkg.go.dev/badge/github.com/kjuulh/avro/v2.svg)](https://pkg.go.dev/github.com/kjuulh/avro/v2)
+[![GitHub release](https://img.shields.io/github/release/hamba/avro.svg)](https://github.com/kjuulh/avro/releases)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/hamba/avro/master/LICENSE)
 
 A fast Go avro codec
@@ -18,7 +18,7 @@ A fast Go avro codec
 Install with:
 
 ```shell
-go get github.com/hamba/avro/v2
+go get github.com/kjuulh/avro/v2
 ```
 
 **Note:** This project has renamed the default branch from `master` to `main`. You will need to update your local environment.
@@ -64,7 +64,7 @@ fmt.Println(out)
 // Outputs: {27 foo}
 ```
 
-More examples in the [godoc](https://godoc.org/github.com/hamba/avro/v2).
+More examples in the [godoc](https://godoc.org/github.com/kjuulh/avro/v2).
 
 #### Types Conversions
 
@@ -169,7 +169,7 @@ Go structs can be generated for you from the schema. The types generated follow 
 Install the struct generator with:
 
 ```shell
-go install github.com/hamba/avro/v2/cmd/avrogen@<version>
+go install github.com/kjuulh/avro/v2/cmd/avrogen@<version>
 ```
 
 Example usage assuming there's a valid schema in `in.avsc`:
@@ -197,7 +197,7 @@ schemas to the console. It can be used in CI/CD pipelines to validate schema cha
 Install the Avro schema validator with:
 
 ```shell
-go install github.com/hamba/avro/v2/cmd/avrosv@<version>
+go install github.com/kjuulh/avro/v2/cmd/avrosv@<version>
 ```
 
 Example usage assuming there's a valid schema in `in.avsc` (exit status code is `0`):

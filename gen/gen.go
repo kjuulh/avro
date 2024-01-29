@@ -11,7 +11,7 @@ import (
 	"text/template"
 
 	"github.com/ettle/strcase"
-	"github.com/hamba/avro/v2"
+	"github.com/kjuulh/avro/v2"
 )
 
 // Config configures the code generation.
@@ -159,7 +159,7 @@ func WithEncoders(b bool) OptsFunc {
 	return func(g *Generator) {
 		g.encoders = b
 		if b {
-			g.thirdPartyImports = append(g.thirdPartyImports, "github.com/hamba/avro/v2")
+			g.thirdPartyImports = append(g.thirdPartyImports, "github.com/kjuulh/avro/v2")
 		}
 	}
 }
@@ -329,7 +329,7 @@ func (g *Generator) resolveLogicalSchema(logicalType avro.LogicalType) string {
 		g.addImport("math/big")
 	}
 	if strings.Contains(typ, "avro") {
-		g.addThirdPartyImport("github.com/hamba/avro/v2")
+		g.addThirdPartyImport("github.com/kjuulh/avro/v2")
 	}
 	return typ
 }

@@ -11,8 +11,8 @@ import (
 	"io"
 	"os"
 
-	"github.com/hamba/avro/v2"
-	"github.com/hamba/avro/v2/internal/bytesx"
+	"github.com/kjuulh/avro/v2"
+	"github.com/kjuulh/avro/v2/internal/bytesx"
 )
 
 const (

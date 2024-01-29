@@ -5,7 +5,7 @@ import (
 	"encoding/binary"
 	"fmt"
 
-	"github.com/hamba/avro/v2"
+	"github.com/kjuulh/avro/v2"
 )
 
 // DecoderFunc is a function used to customize the Decoder.
