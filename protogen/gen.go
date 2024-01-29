@@ -213,7 +213,8 @@ func (g *Generator) resolveUnionTypes(s *avro.UnionSchema) string {
 		types = append(types, g.generate(elem))
 	}
 	if s.Nullable() {
-		return "*" + types[0]
+		// protobuf version 3 is optional by default
+		return types[0]
 	}
 	return "any"
 }
