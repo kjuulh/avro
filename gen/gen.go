@@ -386,7 +386,13 @@ func (g *Generator) addThirdPartyImport(pkg string) {
 
 // Write writes Go code from the parsed schemas.
 func (g *Generator) Write(w io.Writer) error {
-	parsed, err := template.New("out").Parse(outputTemplate)
+	parsed, err := template.New("out").Funcs(template.FuncMap{"add": func(numbers ...int) int {
+		sum := 0
+		for _, num := range numbers {
+			sum += num
+		}
+		return sum
+	}}).Parse(outputTemplate)
 	if err != nil {
 		return err
 	}
