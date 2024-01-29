@@ -149,17 +149,18 @@ func (g *Generator) generate(schema avro.Schema) string {
 		}
 		return typ
 	case *avro.ArraySchema:
-		return "[]" + g.generate(s.Items())
+		return "repeated " + g.generate(s.Items())
 	case *avro.EnumSchema:
+		// TODO: maybe do enums as well
 		return "string"
 	case *avro.FixedSchema:
-		typ := fmt.Sprintf("[%d]byte", s.Size())
+		typ := "bytes"
 		if ls := s.Logical(); ls != nil {
 			typ = g.resolveLogicalSchema(ls.Type())
 		}
 		return typ
 	case *avro.MapSchema:
-		return "map[string]" + g.generate(s.Values())
+		return "map<string, " + g.generate(s.Values()) + ">"
 	case *avro.UnionSchema:
 		return g.resolveUnionTypes(s)
 	default:
