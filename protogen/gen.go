@@ -165,7 +165,7 @@ func (g *Generator) resolveRecordSchema(schema *avro.RecordSchema) string {
 	for i, f := range schema.Fields() {
 		typ := g.generate(f.Type())
 		tag := f.Name()
-		fields[i] = g.newField(g.nameCaser.ToPascal(f.Name()), typ, tag)
+		fields[i] = g.newField(f.Name(), typ, tag)
 	}
 
 	typeName := g.resolveTypeName(schema)
